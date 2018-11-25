@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Http\Request;
+use App\Email;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,22 +13,27 @@ use Illuminate\Http\Request;
 */
 
 $router->get('/', function () use ($router) {
-    return 'Email-API';
+    return view('email-add');
 });
 
-$router->post('/emails/add/{emails}', function (Request $emails){
-
-   $emails->filter();
-   $emails->sort();
-
+$router->post('/emails/add/{emails}', function (Request $request){
+    $emails = $request->input('emails');
+    $emails = preg_split('/ /',$emails); 
+    sort($emails); 
     for($i = 0; $i < count($emails); $i++) {
-        $this->validate($emails[$i], [
-            'email' => 'required|email|max:50|min:5',
-        ]);
-        
-        file_put_contents("emails.txt", $emails[$i], FILE_APPEND); // Coloca o email no arquivo.txt
-        $data = new DateTime();
-        file_put_contents("emails_{$data}.txt", $emails[$i], FILE_APPEND); // Cria um novo arquivo de acordo com o timestamps
+
+        if(filter_var($emails[$i], FILTER_VALIDATE_EMAIL))
+        {
+        file_put_contents("emails.txt", $emails[$i], FILE_APPEND); // Coloca o email no arquivo emails.txt na pasta public
+        $agora = new DateTime();
+        $data = $agora->format('l-d-M-Y-H-i-s'); 
+
+        file_put_contents("emails_$data.txt", $emails[$i]); // Cria um novo arquivo de acordo com o timestamps
+        }
+        else
+        {
+            echo('Insira emails validos');
+        }
     }
  
 });

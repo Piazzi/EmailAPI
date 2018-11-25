@@ -9,7 +9,7 @@
 <body>
     <div class="container">
     <form action="/emails/add/{emails}" method="post">
-        
+        <input name="_method" type="hidden" value="POST">
         <div class="form-group">
           <label for="">Digite os Emails abaixo</label>
           <input type="text" name="emails" id="" class="form-control" placeholder="..." aria-describedby="helpId">

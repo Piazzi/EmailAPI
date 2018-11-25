@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Monolog\Handler\FirePHPHandler;
 
 class EmailController extends Controller
 {
@@ -16,29 +19,33 @@ class EmailController extends Controller
         //
     }
 
-
-    public static function filter($emails)
+    public function store()
     {
-        return  str_split('/ /',$emails,-1);      
+
     }
 
-    public static function sort($emails)
+    public function create()
     {
-       return sort($emails);
+
     }
 
-    public function send()
+    public function edit()
     {
-        require_once '/path/to/Faker/src/autoload.php';
-        $faker = Faker\Factory::create();
-        if($faker->boolean)
-        {
-                
-        }
-        else
-        {
 
-        }
     }
-    //
+
+    public function show()
+    {
+
+    }
+
+    public function update()
+    {
+
+    }
+
+    public function delete()
+    {
+        
+    }
 }

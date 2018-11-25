@@ -11,7 +11,7 @@
     <form action="/emails/add/{emails}" method="post">
         <input name="_method" type="hidden" value="POST">
         <div class="form-group">
-          <label for="">Digite os Emails abaixo</label>
+          <label for="">Digite a lista de emails: </label>
           <input type="text" name="emails" id="" class="form-control" placeholder="..." aria-describedby="helpId">
           <small id="helpId" class="text-muted">Separe os emails com um espaço</small>
         </div>

@@ -16,7 +16,12 @@ class Email extends Model implements AuthenticatableContract, AuthorizableContra
 {
     use Authenticatable, Authorizable;
 
-    protected $filliable = ['emails'];
+    protected $filliable = ['email'];
+
+    public function __construct($email)
+    {
+
+    }
 
     public static function filter($emails)
     {
@@ -28,17 +33,22 @@ class Email extends Model implements AuthenticatableContract, AuthorizableContra
        return sort($emails);
     }
 
-    public function send()
+    public function send($subject, $body)
     {
         require_once '/path/to/Faker/src/autoload.php';
         $faker = Faker\Factory::create();
         if($faker->boolean)
         {
-                
+            $logger = new Logger('sent');
+            $logger->pushHandler(new StreamHandler(DIR. '/sent.log', Logger::DEBUG));
+            $data = new DateTime();
+            $logger->info('Hora:'. $data . 'Endereço: '.$email.'Assunto: '.$subject);                  
         }
         else
         {
-
+            $logger = new Logger('fail');
+            $logger->pushHandler(new StreamHandler(DIR. '/fail.log', Logger::DEBUG));
+            $logger->info('Hora:'. $data . 'Endereço: '.$email.'Assunto: '.$subject);                  
         }
     }
     //

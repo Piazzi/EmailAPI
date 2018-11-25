@@ -19,7 +19,7 @@ class EmailController extends Controller
         //
     }
 
-    public function store()
+    public function store(Request $request)
     {
 
     }
@@ -29,22 +29,22 @@ class EmailController extends Controller
 
     }
 
-    public function edit()
+    public function edit($id)
     {
 
     }
 
-    public function show()
+    public function show($id)
     {
 
     }
 
-    public function update()
+    public function update(Request $request, $id)
     {
 
     }
 
-    public function delete()
+    public function delete($id)
     {
         
     }

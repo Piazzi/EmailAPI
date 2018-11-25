@@ -29,10 +29,12 @@ $router->post('/emails/add/{emails}', function (Request $request){
         $data = $agora->format('l-d-M-Y-H-i-s'); 
 
         file_put_contents("emails_$data.txt", $emails[$i]); // Cria um novo arquivo de acordo com o timestamps
+        echo nl2br("  Email: $emails[$i] inserido com sucesso \n ");
+        
         }
         else
         {
-            echo('Insira emails validos');
+            echo nl2br( "Por favor insira um email valido \n");
         }
     }
  
